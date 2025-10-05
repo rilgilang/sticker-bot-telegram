@@ -18,7 +18,7 @@ type Config struct {
 	DBName               string `env:"DB_NAME"`
 	DBUsername           string `env:"DB_USERNAME"`
 	DBPassword           string `env:"DB_PASSWORD"`
-	OCRApiKeys           string `env:OCR_API_KEYS`
+	OCRApiKeys           string `env:"OCR_API_KEYS"`
 	BotToken             string `env:"BOT_TOKEN"`
 	MinioEndpoint        string `env:"MINIO_ENDPOINT"`
 	MinioAccessKey       string `env:"MINIO_ACCESS_KEY"`

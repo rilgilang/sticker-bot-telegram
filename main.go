@@ -4,7 +4,7 @@ import (
 	"tele-sticker-finder/config"
 	"tele-sticker-finder/db"
 	"tele-sticker-finder/migration"
-	"tele-sticker-finder/pkg"
+	"tele-sticker-finder/pkg/bot"
 )
 
 func main() {
@@ -29,7 +29,9 @@ func main() {
 		panic(err)
 	}
 
+	redisConn := db.NewRedisConnection(cfg)
+
 	migration.AutoMigration(dbConn)
 
-	pkg.StartBot(cfg)
+	bot.StartBot(cfg, dbConn, redisConn)
 }

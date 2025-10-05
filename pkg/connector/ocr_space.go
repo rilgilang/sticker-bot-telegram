@@ -1,6 +1,7 @@
 package connector
 
 import (
+	"errors"
 	"fmt"
 	"github.com/go-resty/resty/v2"
 	"os"
@@ -81,7 +82,9 @@ func (k *APIKeys) ProcessOCR(rest *resty.Client, filePath *string, fileType stri
 		return nil, err
 	}
 
-	fmt.Println("response --> ", string(response.Body()))
+	if response.StatusCode() >= 400 {
+		return nil, errors.New(fmt.Sprintf(`error processing ocr: %s`, string(response.Body())))
+	}
 
 	return result, nil
 }
